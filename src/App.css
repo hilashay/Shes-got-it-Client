@@ -97,19 +97,24 @@ h2 {
 }
 
 .required {
-  display: block;
+  display: flex;
+  justify-content: left;
   text-align: right;
   color: rgba(121, 121, 121, 0.879);
   font-style: italic;
   font-size: smaller;
+  margin-left: 175px;
+  font-size: small;
 }
 
 .requirederror {
-  display: block;
+  display: flex;
+  justify-content: left;
   text-align: right;
   color: rgb(253, 0, 0);
   font-style: italic;
-  font-size: smaller;
+  margin-bottom: 10px;
+  font-size: small;
 }
 
 .input-container {
@@ -117,23 +122,46 @@ h2 {
   border: thin;
   border-radius: 10px;
   border-style: solid;
-  width: 25%;
-  height: 80%;
+  width: 60%;
+  height: 500px;
   padding: 50px;
   margin-top: 20px;
 }
 
 input[type="text"] {
-  width: 100%;
-  height: 40px;
+  display: flex;
+  width: 25%;
+  height: 35px;
   padding: 12px 20px 12px;
   margin: 8px 0;
   box-sizing: border-box;
+  border: thin;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #8080807d;
 }
 
 .label-input {
   display: flex;
   justify-content: flex-start;
+}
+
+.budget {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+
+.neverWearInput {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+}
+
+.alwaysWearInput {
+  position: absolute;
+  left: 70%;
+  top: 40%;
 }
 
 select {
@@ -144,7 +172,11 @@ select {
 }
 
 input[type="submit"] {
+  position: absolute;
+  right: 20%;
+  bottom: 7%;
   background-color: #7777f3;
+  height: 50px;
   border: none;
   color: black;
   padding: 16px 32px;
@@ -152,7 +184,9 @@ input[type="submit"] {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  line-height: 0px;
 }
+
 /* success page */
 
 .process-container {

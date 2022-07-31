@@ -5,7 +5,7 @@ import Review from "./Components/Review";
 import useComments from "./CustomHooks/useComments";
 import ReviewModal from "./Components/ReviewModal";
 import { useState, useRef } from "react";
-
+import Header from "./Components/Header";
 function ReviewsPage() {
   const [showModal, setShowModal] = useState(false);
   const users = useComments();
@@ -32,28 +32,31 @@ function ReviewsPage() {
   };
 
   return (
-    <div onClick={handleContainerClick}>
-      <h1>Reviews</h1>
-      <Reviews
-        users={users}
-        onSelectReview={(review) => {
-          setSelectedReview(review);
-          setShowModal(true);
-        }}
-        showModal={() => setShowModal(false)}
-      />
+    <>
+      <Header />
+      <div onClick={handleContainerClick}>
+        <h1>Reviews</h1>
+        <Reviews
+          users={users}
+          onSelectReview={(review) => {
+            setSelectedReview(review);
+            setShowModal(true);
+          }}
+          showModal={() => setShowModal(false)}
+        />
 
-      <ReviewModal
-        ref={modalContainerRef}
-        onClose={() => setShowModal(false)}
-        showModal={showModal}
-        review={selectedReview}
-      />
+        <ReviewModal
+          ref={modalContainerRef}
+          onClose={() => setShowModal(false)}
+          showModal={showModal}
+          review={selectedReview}
+        />
 
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </div>
+        <nav>
+          <Link to="/">Home</Link>
+        </nav>
+      </div>
+    </>
   );
 }
 

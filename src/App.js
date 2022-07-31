@@ -7,19 +7,9 @@ import Header from "./routes/Components/Header";
 import Intro from "./routes/Components/Intro";
 import DressMeButton from "./routes/Components/DressMeButton";
 import MyJobPart from "./routes/Components/MyJobPart";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-  Link,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, Link, Outlet } from "react-router-dom";
 
 const HomePage = () => {
-  let navigate = useNavigate();
-
   return (
     <div>
       <Header />

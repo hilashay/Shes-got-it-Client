@@ -12,6 +12,10 @@ import { useNavigate } from "react-router-dom";
 function DressMe(props) {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [details, setDetails] = useState({
     name: "",
     lastName: "",

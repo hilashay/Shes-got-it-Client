@@ -9,6 +9,8 @@ import ErrorValidation from "./Components/ErrorValidation";
 import PhoneValidation from "./Components/PhoneValidation";
 import ErrorPage from "./Components/ErrorPage";
 import { useNavigate } from "react-router-dom";
+import TextInputAndValidation from "./Components/TextInputAndValidation";
+import RangeInputAndValidation from "./Components/RangeInputAndValidation";
 function DressMe(props) {
   const navigate = useNavigate();
 
@@ -16,7 +18,6 @@ function DressMe(props) {
     window.scrollTo(0, 0);
   }, []);
 
-  const [textBox, setTextBox] = useState(false);
   const [details, setDetails] = useState({
     name: "",
     lastName: "",
@@ -49,10 +50,6 @@ function DressMe(props) {
   };
 
   const alwaysWearChangeHandler = (e) => {
-    console.log("e", e);
-    if (e.target.value === "other") {
-      setTextBox(true);
-    }
     if (e.target.checked && !alwaysWearSelect.includes(e.target.value)) {
       setAlwaysWearSelect((prev) => [...prev, e.target.value]);
     } else if (!e.target.checked && alwaysWearSelect.includes(e.target.value)) {
@@ -119,55 +116,42 @@ function DressMe(props) {
         <DressMeIntro />
         <div className="input-container">
           <form onSubmit={handleSubmit}>
-            <div>
-              <TextInput
-                label="Name: "
-                onChange={(e) => setDetails({ ...details, name: e.target.value })}
-              />
-              {submitButtonClicked ? (
-                <ErrorValidation field={details.name} />
-              ) : (
-                <span class="required">*Required</span>
-              )}
-            </div>
-            <TextInput
-              label="Last Name: "
-              onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+            <TextInputAndValidation
+              labelText="Name: "
+              fieldName={details.name}
+              onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              shouldShowError={submitButtonClicked}
             />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.lastName} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
+            <TextInputAndValidation
+              labelText="Last Name: "
+              fieldName={details.lastName}
+              onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+              shouldShowError={submitButtonClicked}
+            />
             <TextInput
               label="Phone Number: "
               onChange={(e) => setDetails({ ...details, phone: e.target.value })}
               minlength="10"
             />
             <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
-            <TextInput
-              label=" Full Address: "
+            <TextInputAndValidation
+              labelText=" Full Address: "
+              fieldName={details.address}
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
+              shouldShowError={submitButtonClicked}
             />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.address} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
-            <br />
-            <div className="budget">
-              <label for="budget">Budget</label>
-              <input
-                type="range"
-                step={100}
-                id="budget"
-                name="budget"
-                onChange={(e) => setDetails({ ...details, budget: e.target.value })}
-                min={0}
-                max={10000}
-              />
-              <div style={{ display: "inline" }}>{details.budget}</div>
-            </div>
+            <RangeInputAndValidation
+              fieldName="Budget"
+              step={100}
+              id="budget"
+              name="budget"
+              onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+              max={10000}
+              shouldShowError={submitButtonClicked}
+            />
+            <div style={{ display: "inline" }}>{details.budget}</div>
+            <br></br>
+            <br></br>
             {/* <SelectInput
               label="Shirt Size:"
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
@@ -178,104 +162,84 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
             /> */}
-            <div className="neverWearInput">
-              Never Wear:
-              <br />
-              <CheckboxInput
-                value="skinny"
-                type="skinny"
-                label="Skinny"
-                onChange={neverWearChangeHandler}
-              />
-              <CheckboxInput
-                value="tight"
-                type="tight"
-                label="Tight"
-                onChange={neverWearChangeHandler}
-              />
-              <CheckboxInput
-                value="loose"
-                type="loose"
-                label="Loose"
-                onChange={neverWearChangeHandler}
-              />
-              <CheckboxInput
-                value="slim"
-                type="slim"
-                label="Slim"
-                onChange={neverWearChangeHandler}
-              />
-              <CheckboxInput
-                value="color"
-                type="color"
-                label="Some Color"
-                onChange={neverWearChangeHandler}
-              />
-              <CheckboxInput
-                value="other"
-                type="other"
-                label="Other "
-                onChange={neverWearChangeHandler}
-              />
-            </div>
+            Never Wear:
             <br />
-            <div className="alwaysWearInput">
-              Always Wear:
-              <br />
-              <CheckboxInput
-                value="skinny"
-                type="skinny"
-                label="Skinny"
-                onChange={alwaysWearChangeHandler}
-              />
-              <CheckboxInput
-                value="tight"
-                type="tight"
-                label="Tight"
-                onChange={alwaysWearChangeHandler}
-              />
-              <CheckboxInput
-                value="loose"
-                type="loose"
-                label="Loose"
-                onChange={alwaysWearChangeHandler}
-              />
-              <CheckboxInput
-                value="slim"
-                type="slim"
-                label="Slim"
-                onChange={alwaysWearChangeHandler}
-              />
-              <CheckboxInput
-                value="color"
-                type="color"
-                label="Some Color"
-                onChange={alwaysWearChangeHandler}
-              />
-              <CheckboxInput
-                value="other"
-                type="other"
-                label="Other "
-                onChange={alwaysWearChangeHandler}
-              />
-              {textBox ? (
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  minlength="4"
-                  maxlength="30"
-                  size="10"
-                />
-              ) : null}
-            </div>
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.budget} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
-
+            <CheckboxInput
+              value="skinny"
+              type="skinny"
+              label="Skinny"
+              onChange={neverWearChangeHandler}
+            />
+            <CheckboxInput
+              value="tight"
+              type="tight"
+              label="Tight"
+              onChange={neverWearChangeHandler}
+            />
+            <CheckboxInput
+              value="loose"
+              type="loose"
+              label="Loose"
+              onChange={neverWearChangeHandler}
+            />
+            <CheckboxInput
+              value="slim"
+              type="slim"
+              label="Slim"
+              onChange={neverWearChangeHandler}
+            />
+            <CheckboxInput
+              value="color"
+              type="color"
+              label="Some Color"
+              onChange={neverWearChangeHandler}
+            />
+            <CheckboxInput
+              value="other"
+              type="other"
+              label="Other "
+              onChange={neverWearChangeHandler}
+            />
+            <br />
+            Always Wear:
+            <br />
+            <CheckboxInput
+              value="skinny"
+              type="skinny"
+              label="Skinny"
+              onChange={alwaysWearChangeHandler}
+            />
+            <CheckboxInput
+              value="tight"
+              type="tight"
+              label="Tight"
+              onChange={alwaysWearChangeHandler}
+            />
+            <CheckboxInput
+              value="loose"
+              type="loose"
+              label="Loose"
+              onChange={alwaysWearChangeHandler}
+            />
+            <CheckboxInput
+              value="slim"
+              type="slim"
+              label="Slim"
+              onChange={alwaysWearChangeHandler}
+            />
+            <CheckboxInput
+              value="color"
+              type="color"
+              label="Some Color"
+              onChange={alwaysWearChangeHandler}
+            />
+            <CheckboxInput
+              value="other"
+              type="other"
+              label="Other "
+              onChange={alwaysWearChangeHandler}
+            />
+            <br />
             <input type="submit" value="Submit" />
           </form>
         </div>

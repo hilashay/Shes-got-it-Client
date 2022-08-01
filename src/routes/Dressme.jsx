@@ -115,8 +115,11 @@ function DressMe(props) {
       <div className="main-container">
         <DressMeIntro />
         <div className="idan-container">
-          <div className="column" style={{ backgroundColor: "white" }}>
-            hila
+          <div className="column column1" style={{ backgroundColor: "white" }}>
+            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
+            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
+            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
+            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
           </div>
           <div className="column" style={{ backgroundColor: "blue" }}>
             idan

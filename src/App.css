@@ -141,6 +141,14 @@ h2 {
   flex: 1;
 }
 
+.column1 {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 input[type="text"] {
   display: flex;
   width: 25%;

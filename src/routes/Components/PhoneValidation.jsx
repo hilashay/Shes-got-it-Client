@@ -25,7 +25,7 @@ const PhoneValidation = (props) => {
   }
 
   if (!phone.match(phoneRegex)) {
-    phoneErrorMessage = <span class="requirederror">*Enter valid area code</span>;
+    phoneErrorMessage = <span class="requirederror">*Enter valid number</span>;
     return phoneErrorMessage;
   }
 };

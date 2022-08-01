@@ -9,6 +9,8 @@ import ErrorValidation from "./Components/ErrorValidation";
 import PhoneValidation from "./Components/PhoneValidation";
 import ErrorPage from "./Components/ErrorPage";
 import { useNavigate } from "react-router-dom";
+import TextInputAndValidation from "./Components/TextInputAndValidation";
+import RangeInputAndValidation from "./Components/RangeInputAndValidation";
 function DressMe(props) {
   const navigate = useNavigate();
 
@@ -114,39 +116,42 @@ function DressMe(props) {
         <DressMeIntro />
         <div className="input-container">
           <form onSubmit={handleSubmit}>
-            <TextInput
-              label="Name: "
+            <TextInputAndValidation
+              labelText="Name: "
+              fieldName={details.name}
               onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              shouldShowError={submitButtonClicked}
             />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.name} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
-            <TextInput
-              label="Last Name: "
+            <TextInputAndValidation
+              labelText="Last Name: "
+              fieldName={details.lastName}
               onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+              shouldShowError={submitButtonClicked}
             />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.lastName} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
             <TextInput
               label="Phone Number: "
               onChange={(e) => setDetails({ ...details, phone: e.target.value })}
               minlength="10"
             />
             <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
-            <TextInput
-              label=" Full Address: "
+            <TextInputAndValidation
+              labelText=" Full Address: "
+              fieldName={details.address}
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
+              shouldShowError={submitButtonClicked}
             />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.address} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
+            <RangeInputAndValidation
+              fieldName="Budget"
+              step={100}
+              id="budget"
+              name="budget"
+              onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+              max={10000}
+              shouldShowError={submitButtonClicked}
+            />
+            <div style={{ display: "inline" }}>{details.budget}</div>
+            <br></br>
+            <br></br>
             {/* <SelectInput
               label="Shirt Size:"
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
@@ -235,24 +240,6 @@ function DressMe(props) {
               onChange={alwaysWearChangeHandler}
             />
             <br />
-            <label for="budget">Budget</label>
-            <input
-              type="range"
-              step={100}
-              id="budget"
-              name="budget"
-              onChange={(e) => setDetails({ ...details, budget: e.target.value })}
-              min={0}
-              max={10000}
-            />
-            {submitButtonClicked ? (
-              <ErrorValidation field={details.budget} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
-            <div style={{ display: "inline" }}>{details.budget}</div>
-            <br></br>
-            <br></br>
             <input type="submit" value="Submit" />
           </form>
         </div>

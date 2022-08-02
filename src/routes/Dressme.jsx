@@ -116,10 +116,10 @@ function DressMe(props) {
         <DressMeIntro />
         <div className="idan-container">
           <div className="column column1" style={{ backgroundColor: "white" }}>
-            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
-            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
-            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
-            <div style={{ backgroundColor: "yellow", height: 40, width: 200 }}></div>
+            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
+            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
+            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
+            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
           </div>
           <div className="column" style={{ backgroundColor: "blue" }}>
             idan

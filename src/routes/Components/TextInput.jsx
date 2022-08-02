@@ -1,12 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 
 const TextInput = (props) => {
   return (
-    <div className="input-group">
+    <Container>
       <label className="label-input">{props.label}</label>
       <input type="text" onChange={props.onChange} />
-    </div>
+    </Container>
   );
 };
 
 export default TextInput;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;

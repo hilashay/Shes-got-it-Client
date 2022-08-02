@@ -97,13 +97,9 @@ h2 {
 }
 
 .required {
-  display: flex;
-  justify-content: left;
-  text-align: right;
   color: rgba(121, 121, 121, 0.879);
   font-style: italic;
   font-size: smaller;
-  margin-left: 175px;
   font-size: small;
 }
 
@@ -150,11 +146,7 @@ h2 {
 }
 
 input[type="text"] {
-  display: flex;
-  width: 25%;
   height: 35px;
-  padding: 12px 20px 12px;
-  margin: 8px 0;
   box-sizing: border-box;
   border: thin;
   border-radius: 5px;

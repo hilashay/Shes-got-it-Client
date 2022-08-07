@@ -1,4 +1,5 @@
 import React from "react";
+import Required from "./UI/Required";
 
 let phoneErrorMessage = "";
 
@@ -8,7 +9,7 @@ const PhoneValidation = (props) => {
   const phoneNumber = parseInt(phoneNumberString);
   const phoneRegex = /^05([23480]){1}([0-9]){7}/;
   if (!shouldValidate) {
-    return (phoneErrorMessage = <span class="required">*Required</span>);
+    return (phoneErrorMessage = <Required>*Required</Required>);
   }
 
   if (!phone) {

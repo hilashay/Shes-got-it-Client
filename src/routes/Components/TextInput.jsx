@@ -15,4 +15,6 @@ export default TextInput;
 const Container = styled.div`
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
+  min-width: 200px;
 `;

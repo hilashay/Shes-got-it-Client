@@ -11,6 +11,11 @@ import ErrorPage from "./Components/ErrorPage";
 import { useNavigate } from "react-router-dom";
 import TextInputAndValidation from "./Components/TextInputAndValidation";
 import RangeInputAndValidation from "./Components/RangeInputAndValidation";
+import styled from "styled-components";
+import Container from "./Components/UI/InputAndValidationContainer";
+import NeverWearInputContainer from "./Components/NeverWearInputContainer";
+import AlwaysWearInputContainer from "./Components/AlwaysWearInputContainer";
+
 function DressMe(props) {
   const navigate = useNavigate();
 
@@ -114,23 +119,108 @@ function DressMe(props) {
       <Header />
       <div className="main-container">
         <DressMeIntro />
-        <div className="idan-container">
-          <div className="column column1" style={{ backgroundColor: "white" }}>
-            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
-            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
-            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
-            <TextInputAndValidation labelText="Name: " fieldName="hila" shouldShowError={false} />
+        <Form onSubmit={handleSubmit} className="form-container">
+          <div className="column column1">
+            <TextInputAndValidation
+              labelText="Name: "
+              fieldName={details.name}
+              onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              shouldShowError={submitButtonClicked}
+            />
+            <TextInputAndValidation
+              labelText="Last Name: "
+              fieldName={details.lastName}
+              onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+              shouldShowError={submitButtonClicked}
+            />
+            <Container>
+              <TextInput
+                label="Phone Number: "
+                onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+                minlength="10"
+              />
+              <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
+            </Container>
+            <TextInputAndValidation
+              labelText=" Full Address: "
+              fieldName={details.address}
+              onChange={(e) => setDetails({ ...details, address: e.target.value })}
+              shouldShowError={submitButtonClicked}
+            />
+            <Container>
+              <RangeInputAndValidation
+                fieldName="Budget"
+                step={100}
+                id="budget"
+                name="budget"
+                onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+                max={10000}
+                shouldShowError={submitButtonClicked}
+                details={details}
+              />
+            </Container>
           </div>
-          <div className="column" style={{ backgroundColor: "blue" }}>
-            idan
+          <div className="column column2">
+            <Container>
+              Never Wear:
+              <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
+              <br></br>
+              Always Wear:
+              <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
+            </Container>
           </div>
-          <div className="column" style={{ backgroundColor: "yellow" }}>
-            sefi
+          <div className="column column3">
+            <SelectInput
+              label="Shirt Size:"
+              onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
+              sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
+            />
+            <SelectInput
+              label="Pants Size:"
+              onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
+              sizes={["", "36", "38", "40", "42", "44", "46"]}
+            />
           </div>
-        </div>
+          <SubmitContainer>
+            <Submit>Submit</Submit>
+          </SubmitContainer>
+        </Form>
       </div>
     </div>
   );
 }
 
 export default DressMe;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: 450px;
+  background-color: white;
+  border: thin;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #dddddd3b;
+`;
+
+const Submit = styled.button`
+  background-color: #7777f3;
+  height: 50px;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 0px;
+`;
+
+const SubmitContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: end;
+  margin-right: 20px;
+  margin-bottom: 20px;
+`;

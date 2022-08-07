@@ -1,4 +1,5 @@
 import React from "react";
+import Required from "./UI/Required";
 
 let errorMessage = "";
 
@@ -11,7 +12,7 @@ const ErrorValidation = (props) => {
     errorMessage = <span class="requirederror">*Required at least two charcters</span>;
     return errorMessage;
   } else {
-    return (errorMessage = <span class="required">*Required</span>);
+    return (errorMessage = <Required>*Required</Required>);
   }
 };
 

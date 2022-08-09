@@ -61,7 +61,6 @@ h1 {
 h2 {
   font-weight: lighter;
   font-size: 30px;
-  line-height: 0px;
 }
 .dress-me-button-container {
   display: flex;
@@ -447,4 +446,32 @@ footer p {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .App-main-img {
+    width: 100%;
+  }
+  .App-logo {
+    width: 95%;
+  }
+  h2 {
+    width: 95%;
+  }
+
+  /* nav {
+    width: 95%;
+  } */
+  .main-container {
+    width: 95%;
+  }
+  .input-container {
+    width: 95%;
+  }
+  .column1 {
+    width: 95%;
+  }
+  .column2 {
+    width: 95%;
+  }
 }

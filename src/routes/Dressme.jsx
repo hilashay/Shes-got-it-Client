@@ -119,8 +119,8 @@ function DressMe(props) {
       <Header />
       <div className="main-container">
         <DressMeIntro />
-        <Form onSubmit={handleSubmit} className="form-container">
           <div className="column column1">
+        <Form onSubmit={handleSubmit}>
             <TextInputAndValidation
               labelText="Name: "
               fieldName={details.name}

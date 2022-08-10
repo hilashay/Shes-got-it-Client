@@ -119,8 +119,8 @@ function DressMe(props) {
       <Header />
       <div className="main-container">
         <DressMeIntro />
-          <div className="column column1">
         <Form onSubmit={handleSubmit}>
+          <Column1>
             <TextInputAndValidation
               labelText="Name: "
               fieldName={details.name}
@@ -159,8 +159,8 @@ function DressMe(props) {
                 details={details}
               />
             </Container>
-          </div>
-          <div className="column column2">
+          </Column1>
+          <Column2>
             <Container>
               Never Wear:
               <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
@@ -168,8 +168,8 @@ function DressMe(props) {
               Always Wear:
               <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
             </Container>
-          </div>
-          <div className="column column3">
+          </Column2>
+          <Column3>
             <SelectInput
               label="Shirt Size:"
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
@@ -180,7 +180,7 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
             />
-          </div>
+          </Column3>
           <SubmitContainer>
             <Submit>Submit</Submit>
           </SubmitContainer>
@@ -191,6 +191,34 @@ function DressMe(props) {
 }
 
 export default DressMe;
+
+const Column1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-left: 20px;
+  flex: 3;
+`;
+
+const Column2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex: 2;
+`;
+
+const Column3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+`;
 
 const Form = styled.form`
   display: flex;

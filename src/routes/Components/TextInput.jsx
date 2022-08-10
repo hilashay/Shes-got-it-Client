@@ -3,18 +3,22 @@ import styled from "styled-components";
 
 const TextInput = (props) => {
   return (
-    <Container>
+    <TextInputContainer>
       <label className="label-input">{props.label}</label>
       <input type="text" onChange={props.onChange} />
-    </Container>
+    </TextInputContainer>
   );
 };
 
 export default TextInput;
 
-const Container = styled.div`
+const TextInputContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  min-width: 200px;
+  align-items: start;
+  width: 220px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
 `;

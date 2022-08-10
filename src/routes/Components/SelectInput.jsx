@@ -29,6 +29,11 @@ const SelectInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: -webkit-fill-available;
+    flex-direction: row;
+  }
 `;
 
 const Select = styled.select`
@@ -37,4 +42,5 @@ const Select = styled.select`
   border: solid 1px;
   border-radius: 4px;
   background-color: #f1f1f1;
+  flex-direction: column;
 `;

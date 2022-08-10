@@ -42,4 +42,8 @@ const DisplayRange = styled.div`
 const RangeContainer = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
 `;

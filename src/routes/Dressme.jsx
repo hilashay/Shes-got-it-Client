@@ -161,13 +161,13 @@ function DressMe(props) {
             </Container>
           </Column1>
           <Column2>
-            <Container>
+            <AlwaysAndNeverWearContainer>
               Never Wear:
               <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
               <br></br>
               Always Wear:
               <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
-            </Container>
+            </AlwaysAndNeverWearContainer>
           </Column2>
           <Column3>
             <SelectInput
@@ -199,6 +199,11 @@ const Column1 = styled.div`
   align-items: flex-start;
   margin-left: 20px;
   flex: 3;
+  padding: 15px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 0 0 0 0;
+  }
 `;
 
 const Column2 = styled.div`
@@ -207,7 +212,25 @@ const Column2 = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 20px;
-  flex: 2;
+  flex: 1;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 0 0 0;
+  }
+`;
+
+const AlwaysAndNeverWearContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 220px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    flex-direction: row;
+  }
 `;
 
 const Column3 = styled.div`
@@ -217,11 +240,16 @@ const Column3 = styled.div`
   align-items: start;
   margin-right: 20px;
   margin-bottom: 20px;
-  flex: 1;
+  flex: 0.5;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 0 0 0 0;
+  }
 `;
 
 const Form = styled.form`
   display: flex;
+  position: relative;
   flex-direction: row;
   width: 50%;
   height: 450px;
@@ -230,9 +258,18 @@ const Form = styled.form`
   border-radius: 10px;
   border-style: solid;
   background-color: #dddddd3b;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    height: 1000px;
+    flex-direction: column;
+  }
 `;
 
 const Submit = styled.button`
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
   background-color: #7777f3;
   height: 50px;
   border: none;
@@ -242,6 +279,10 @@ const Submit = styled.button`
   cursor: pointer;
   border-radius: 5px;
   line-height: 0px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    position: initial;
+  }
 `;
 
 const SubmitContainer = styled.div`
@@ -251,4 +292,24 @@ const SubmitContainer = styled.div`
   align-items: end;
   margin-right: 20px;
   margin-bottom: 20px;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    align-items: unset;
+    margin: 0 0 0 0;
+  }
+`;
+
+const Div1 = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  @media (min-width: 320px) and (max-width: 480px) {
+  }
+`;
+const Div2 = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  @media (min-width: 320px) and (max-width: 480px) {
+  }
 `;

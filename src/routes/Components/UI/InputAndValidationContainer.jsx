@@ -5,6 +5,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: start;
   width: 220px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export default Container;

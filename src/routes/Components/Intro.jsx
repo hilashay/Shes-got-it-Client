@@ -13,7 +13,7 @@ import homepage from "../../homepage.jpeg";
 
 const Intro = () => {
   return (
-    <div>
+    <div className="main-home-page">
       {" "}
       <h1>Meet she's got it</h1>
       <img src={homepage} className="App-main-img" alt="Logo" />

@@ -11,6 +11,11 @@ import ErrorPage from "./Components/ErrorPage";
 import { useNavigate } from "react-router-dom";
 import TextInputAndValidation from "./Components/TextInputAndValidation";
 import RangeInputAndValidation from "./Components/RangeInputAndValidation";
+import styled from "styled-components";
+import Container from "./Components/UI/InputAndValidationContainer";
+import NeverWearInputContainer from "./Components/NeverWearInputContainer";
+import AlwaysWearInputContainer from "./Components/AlwaysWearInputContainer";
+
 function DressMe(props) {
   const navigate = useNavigate();
 
@@ -114,8 +119,8 @@ function DressMe(props) {
       <Header />
       <div className="main-container">
         <DressMeIntro />
-        <div className="input-container">
-          <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+          <Column1>
             <TextInputAndValidation
               labelText="Name: "
               fieldName={details.name}
@@ -128,31 +133,44 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
               shouldShowError={submitButtonClicked}
             />
-            <TextInput
-              label="Phone Number: "
-              onChange={(e) => setDetails({ ...details, phone: e.target.value })}
-              minlength="10"
-            />
-            <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
+            <Container>
+              <TextInput
+                label="Phone Number: "
+                onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+                minlength="10"
+              />
+              <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
+            </Container>
             <TextInputAndValidation
               labelText=" Full Address: "
               fieldName={details.address}
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
               shouldShowError={submitButtonClicked}
             />
-            <RangeInputAndValidation
-              fieldName="Budget"
-              step={100}
-              id="budget"
-              name="budget"
-              onChange={(e) => setDetails({ ...details, budget: e.target.value })}
-              max={10000}
-              shouldShowError={submitButtonClicked}
-            />
-            <div style={{ display: "inline" }}>{details.budget}</div>
-            <br></br>
-            <br></br>
-            {/* <SelectInput
+            <Container>
+              <RangeInputAndValidation
+                fieldName="Budget"
+                step={100}
+                id="budget"
+                name="budget"
+                onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+                max={10000}
+                shouldShowError={submitButtonClicked}
+                details={details}
+              />
+            </Container>
+          </Column1>
+          <Column2>
+            <AlwaysAndNeverWearContainer>
+              Never Wear:
+              <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
+              <br></br>
+              Always Wear:
+              <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
+            </AlwaysAndNeverWearContainer>
+          </Column2>
+          <Column3>
+            <SelectInput
               label="Shirt Size:"
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
               sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
@@ -161,91 +179,137 @@ function DressMe(props) {
               label="Pants Size:"
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
-            /> */}
-            Never Wear:
-            <br />
-            <CheckboxInput
-              value="skinny"
-              type="skinny"
-              label="Skinny"
-              onChange={neverWearChangeHandler}
             />
-            <CheckboxInput
-              value="tight"
-              type="tight"
-              label="Tight"
-              onChange={neverWearChangeHandler}
-            />
-            <CheckboxInput
-              value="loose"
-              type="loose"
-              label="Loose"
-              onChange={neverWearChangeHandler}
-            />
-            <CheckboxInput
-              value="slim"
-              type="slim"
-              label="Slim"
-              onChange={neverWearChangeHandler}
-            />
-            <CheckboxInput
-              value="color"
-              type="color"
-              label="Some Color"
-              onChange={neverWearChangeHandler}
-            />
-            <CheckboxInput
-              value="other"
-              type="other"
-              label="Other "
-              onChange={neverWearChangeHandler}
-            />
-            <br />
-            Always Wear:
-            <br />
-            <CheckboxInput
-              value="skinny"
-              type="skinny"
-              label="Skinny"
-              onChange={alwaysWearChangeHandler}
-            />
-            <CheckboxInput
-              value="tight"
-              type="tight"
-              label="Tight"
-              onChange={alwaysWearChangeHandler}
-            />
-            <CheckboxInput
-              value="loose"
-              type="loose"
-              label="Loose"
-              onChange={alwaysWearChangeHandler}
-            />
-            <CheckboxInput
-              value="slim"
-              type="slim"
-              label="Slim"
-              onChange={alwaysWearChangeHandler}
-            />
-            <CheckboxInput
-              value="color"
-              type="color"
-              label="Some Color"
-              onChange={alwaysWearChangeHandler}
-            />
-            <CheckboxInput
-              value="other"
-              type="other"
-              label="Other "
-              onChange={alwaysWearChangeHandler}
-            />
-            <br />
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+          </Column3>
+          <SubmitContainer>
+            <Submit>Submit</Submit>
+          </SubmitContainer>
+        </Form>
       </div>
     </div>
   );
 }
 
 export default DressMe;
+
+const Column1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-left: 20px;
+  flex: 3;
+  padding: 15px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 0 0 0 0;
+  }
+`;
+
+const Column2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex: 1;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 0 0 0;
+  }
+`;
+
+const AlwaysAndNeverWearContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 220px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    flex-direction: row;
+  }
+`;
+
+const Column3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  flex: 0.5;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 0 0 0 0;
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 50%;
+  height: 450px;
+  background-color: white;
+  border: thin;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #dddddd3b;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    height: 1000px;
+    flex-direction: column;
+  }
+`;
+
+const Submit = styled.button`
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  background-color: #7777f3;
+  height: 50px;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 0px;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    position: initial;
+  }
+`;
+
+const SubmitContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: end;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    align-items: unset;
+    margin: 0 0 0 0;
+  }
+`;
+
+const Div1 = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  @media (min-width: 320px) and (max-width: 480px) {
+  }
+`;
+const Div2 = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  @media (min-width: 320px) and (max-width: 480px) {
+  }
+`;

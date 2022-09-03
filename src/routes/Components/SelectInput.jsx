@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 
 const SelectInput = (props) => {
-  // "idan";
-
   return (
-    <div
+    <SelectInputContainer
       style={{
         display: "flex",
         margin: 10,
@@ -13,15 +12,35 @@ const SelectInput = (props) => {
       }}
     >
       <label className="label-input">{props.label}</label>
-      <select className="option" onChange={props.onChange}>
+      <Select onChange={props.onChange}>
         {props.sizes.map((size, index) => (
           <option key={size} value={props.sizes[index]}>
             {size}
           </option>
         ))}
-      </select>
-    </div>
+      </Select>
+    </SelectInputContainer>
   );
 };
 
 export default SelectInput;
+
+const SelectInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    width: -webkit-fill-available;
+    flex-direction: row;
+  }
+`;
+
+const Select = styled.select`
+  width: 100px;
+  height: 30px;
+  border: solid 1px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  flex-direction: column;
+`;

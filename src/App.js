@@ -6,6 +6,7 @@ import Success from "./routes/success";
 import Header from "./routes/Components/Header";
 import Intro from "./routes/Components/Intro";
 import DressMeButton from "./routes/Components/DressMeButton";
+import SlideShow from "./routes/Components/SlideShow";
 import MyJobPart from "./routes/Components/MyJobPart";
 import { BrowserRouter as Router, Navigate, Route, Routes, Link, Outlet } from "react-router-dom";
 
@@ -15,7 +16,8 @@ const HomePage = () => {
       <Header />
       <Intro />
       <DressMeButton />
-      <MyJobPart />
+      <SlideShow />
+      {/* <MyJobPart /> */}
 
       <footer>
         <p>© 2022 Hila Shay She's-got-it</p>

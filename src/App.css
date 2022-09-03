@@ -385,4 +385,8 @@ footer p {
     width: 95%;
     padding: 15px;
   }
+  .react-slideshow-wrapper.slide {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 }

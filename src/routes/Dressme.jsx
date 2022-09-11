@@ -69,28 +69,29 @@ function DressMe(props) {
   const handleSubmit = async (event) => {
     setSubmitButtonClicked(true);
     if (
-      details.phone.length > 1 &&
-      details.name.length > 1 &&
-      details.lastName.length > 1 &&
-      details.address.length > 1 &&
-      details.budget > 0
+      true
+      // details.phone.length > 1 &&
+      // details.name.length > 1 &&
+      // details.lastName.length > 1 &&
+      // details.address.length > 1 &&
+      // details.budget > 0
     ) {
       event.preventDefault();
 
       try {
-        const res = await fetch("http://localhost:8000/dressme", {
-          method: "POST", // or 'PUT'
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...details,
-            alwaysWear: alwaysWearSelect,
-            neverWear: neverWearSelect,
-          }),
-        });
-        const body = await res.json();
-        console.log("body ", body);
+        // const res = await fetch("http://localhost:8000/dressme", {
+        //   method: "POST", // or 'PUT'
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     ...details,
+        //     alwaysWear: alwaysWearSelect,
+        //     neverWear: neverWearSelect,
+        //   }),
+        // });
+        // const body = await res.json();
+        // console.log("body ", body);
         // navigate(`/dressme/success/${res.body._id}`);
       } catch (error) {
         console.log("Error:", error);
@@ -105,6 +106,7 @@ function DressMe(props) {
       event.preventDefault();
     }
   };
+
   return isError ? (
     <ErrorPage />
   ) : isSubmitted ? (
@@ -120,7 +122,7 @@ function DressMe(props) {
       <div className="main-container">
         <DressMeIntro />
         <Form onSubmit={handleSubmit}>
-          <Column1>
+          {/* <Column1>
             <TextInputAndValidation
               labelText="Name: "
               fieldName={details.name}
@@ -159,8 +161,8 @@ function DressMe(props) {
                 details={details}
               />
             </Container>
-          </Column1>
-          <Column2>
+          </Column1> */}
+          {/* <Column2>
             <AlwaysAndNeverWearContainer>
               Never Wear:
               <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
@@ -180,7 +182,7 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
             />
-          </Column3>
+          </Column3> */}
           <SubmitContainer>
             <Submit>Submit</Submit>
           </SubmitContainer>

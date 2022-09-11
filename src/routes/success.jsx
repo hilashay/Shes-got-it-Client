@@ -2,10 +2,13 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Entries, AlwaysAndNeverWearEntries } from "./Components/Entries";
 import Header from "./Components/Header";
+import { useSelector, useDispatch } from "react-redux";
 
-function Success(props) {
-  let { id } = useParams();
-  console.log("id: ", id);
+const Success = (props) => {
+  const count = useSelector((state) => state.counter.value);
+
+  // let { id } = useParams();
+  // console.log("id: ", id);
   const { details, alwaysWearSelect, neverWearSelect } = props;
   // const details = props.details;
   // const alwaysWearSelect = props.alwaysWearSelect;
@@ -19,6 +22,7 @@ function Success(props) {
       <Header />
       <div className="main-container">
         <h2>Perfect! Ive got all i need!</h2>
+        {count}
         <div class="success-cunteiner">
           <Entries entries={entries} />
           Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />
@@ -30,6 +34,6 @@ function Success(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Success;

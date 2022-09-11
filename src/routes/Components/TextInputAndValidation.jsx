@@ -3,11 +3,18 @@ import TextInput from "./TextInput";
 import ErrorValidation from "./ErrorValidation";
 import Required from "./UI/Required";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { firstName } from "../counter/counterSlice";
 
-const TextInputAndValidation = ({ labelText, fieldName, onChange, shouldShowError }) => {
+const TextInputAndValidation = ({ labelText, fieldName, shouldShowError }) => {
+  const dispatch = useDispatch();
   return (
     <TextInputContainer>
-      <TextInput label={labelText} onChange={onChange} />
+      <TextInput label={labelText} onChange={(e) => dispatch(firstName(e.target.value))} />
+      {/* <TextInput
+        label={labelText}
+        onChange={(e) => console.log("e.target.value ", e.target.value)}
+      /> */}
       {shouldShowError ? <ErrorValidation field={fieldName} /> : <Required>*Required</Required>}
     </TextInputContainer>
   );

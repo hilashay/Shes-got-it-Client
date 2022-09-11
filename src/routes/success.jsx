@@ -5,7 +5,8 @@ import Header from "./Components/Header";
 import { useSelector, useDispatch } from "react-redux";
 
 const Success = (props) => {
-  const count = useSelector((state) => state.counter.value);
+  const name = useSelector((state) => state.name.value);
+  console.log("name", name);
 
   // let { id } = useParams();
   // console.log("id: ", id);
@@ -22,7 +23,7 @@ const Success = (props) => {
       <Header />
       <div className="main-container">
         <h2>Perfect! Ive got all i need!</h2>
-        {count}
+        name: {name}
         <div class="success-cunteiner">
           <Entries entries={entries} />
           Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />

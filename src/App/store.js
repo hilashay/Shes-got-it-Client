@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../routes/counter/counterSlice";
+import deatlisSlice from "../routes/counter/counterSlice";
 
-console.log("counterReducer", counterReducer);
+console.log("firstNameReducer", deatlisSlice);
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    name: deatlisSlice,
   },
 });

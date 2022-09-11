@@ -13,10 +13,12 @@ import TextInput from "./Components/TextInput";
 import TextInputAndValidation from "./Components/TextInputAndValidation";
 import Container from "./Components/UI/InputAndValidationContainer";
 import Success from "./success";
-import { Counter } from "./counter/Counter";
+// import { Counter } from "./counter/Counter";
+import { useSelector } from "react-redux";
 
 function DressMe(props) {
   const navigate = useNavigate();
+  const name = useSelector((state) => state.name.value);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -117,16 +119,15 @@ function DressMe(props) {
     />
   ) : (
     <div>
-      <Counter />
+      {/* <Counter /> */}
       <Header />
       <div className="main-container">
         <DressMeIntro />
         <Form onSubmit={handleSubmit}>
-          {/* <Column1>
+          <Column1>
             <TextInputAndValidation
-              labelText="Name: "
-              fieldName={details.name}
-              onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              labelText="name"
+              fieldName={name}
               shouldShowError={submitButtonClicked}
             />
             <TextInputAndValidation
@@ -135,7 +136,7 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
               shouldShowError={submitButtonClicked}
             />
-            <Container>
+            {/* <Container>
               <TextInput
                 label="Phone Number: "
                 onChange={(e) => setDetails({ ...details, phone: e.target.value })}
@@ -160,8 +161,8 @@ function DressMe(props) {
                 shouldShowError={submitButtonClicked}
                 details={details}
               />
-            </Container>
-          </Column1> */}
+            </Container> */}
+          </Column1>
           {/* <Column2>
             <AlwaysAndNeverWearContainer>
               Never Wear:

@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 
 function DressMe(props) {
   const navigate = useNavigate();
-  const name = useSelector((state) => state.name.value);
+  const name = useSelector((state) => state.details.value);
 
   useEffect(() => {
     window.scrollTo(0, 0);

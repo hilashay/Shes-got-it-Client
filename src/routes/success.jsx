@@ -5,7 +5,7 @@ import Header from "./Components/Header";
 import { useSelector, useDispatch } from "react-redux";
 
 const Success = (props) => {
-  const name = useSelector((state) => state.name.value);
+  const name = useSelector((state) => state.details.value);
   console.log("name", name);
 
   // let { id } = useParams();

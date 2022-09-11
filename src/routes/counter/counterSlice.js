@@ -23,7 +23,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // });
 
 export const firstNameSlice = createSlice({
-  name: "name",
+  name: "details",
   initialState: {
     value: " ",
   },

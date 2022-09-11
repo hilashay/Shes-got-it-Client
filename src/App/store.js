@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import firstNameSlice from "../routes/counter/counterSlice";
+import detailsSlice from "../routes/counter/counterSlice";
 
-console.log("firstNameReducer", firstNameSlice);
+console.log("firstNameReducer", detailsSlice);
 export default configureStore({
   reducer: {
-    details: firstNameSlice,
+    details: detailsSlice,
   },
 });

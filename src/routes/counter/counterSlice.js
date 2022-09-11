@@ -22,13 +22,13 @@ import { createSlice } from "@reduxjs/toolkit";
 //   },
 // });
 
-export const firstNameSlice = createSlice({
+export const detailsSlice = createSlice({
   name: "details",
   initialState: {
     value: " ",
   },
   reducers: {
-    firstName: (state, action) => {
+    updateDetails: (state, action) => {
       console.log("state", state);
       console.log("action", action);
       state.value = action.payload;
@@ -38,6 +38,6 @@ export const firstNameSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-export const { firstName } = firstNameSlice.actions;
+export const { updateDetails } = detailsSlice.actions;
 
-export default firstNameSlice.reducer;
+export default detailsSlice.reducer;

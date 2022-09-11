@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import AlwaysWearInputContainer from "./Components/AlwaysWearInputContainer";
 import DressMeIntro from "./Components/DressMeIntro";
+import ErrorPage from "./Components/ErrorPage";
+import Header from "./Components/Header";
+import NeverWearInputContainer from "./Components/NeverWearInputContainer";
+import PhoneValidation from "./Components/PhoneValidation";
+import RangeInputAndValidation from "./Components/RangeInputAndValidation";
 import SelectInput from "./Components/SelectInput";
 import TextInput from "./Components/TextInput";
-import Success from "./success";
-import CheckboxInput from "./Components/CheckboxInput";
-import Header from "./Components/Header";
-import ErrorValidation from "./Components/ErrorValidation";
-import PhoneValidation from "./Components/PhoneValidation";
-import ErrorPage from "./Components/ErrorPage";
-import { useNavigate } from "react-router-dom";
 import TextInputAndValidation from "./Components/TextInputAndValidation";
-import RangeInputAndValidation from "./Components/RangeInputAndValidation";
-import styled from "styled-components";
 import Container from "./Components/UI/InputAndValidationContainer";
-import NeverWearInputContainer from "./Components/NeverWearInputContainer";
-import AlwaysWearInputContainer from "./Components/AlwaysWearInputContainer";
+import Success from "./success";
+import { Counter } from "./counter/Counter";
 
 function DressMe(props) {
   const navigate = useNavigate();
@@ -116,6 +115,7 @@ function DressMe(props) {
     />
   ) : (
     <div>
+      <Counter />
       <Header />
       <div className="main-container">
         <DressMeIntro />

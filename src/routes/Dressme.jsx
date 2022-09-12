@@ -19,25 +19,15 @@ import Success from "./success";
 
 function DressMe(props) {
   const navigate = useNavigate();
-  const detailsRedux = useSelector((state) => state.details.value);
+  const details = useSelector((state) => state.details.value);
   const dispatch = useDispatch();
   const onChangeForFieldName = (fieldName) => (e) =>
     dispatch(updateDetails({ value: e.target.value, fieldName }));
-  console.log("detailsRedux ", detailsRedux);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [details, setDetails] = useState({
-    name: "",
-    lastName: "",
-    phone: "",
-    address: "",
-    shirtSize: "",
-    pantsSize: "",
-    budget: "",
-  });
   const [isError, setIsError] = useState(false);
   const [alwaysWearSelect, setAlwaysWearSelect] = useState([]);
   const [neverWearSelect, setNeverWearSelect] = useState([]);
@@ -132,14 +122,14 @@ function DressMe(props) {
             <TextInputAndValidation
               labelText="Name: "
               fieldName="name"
-              value={detailsRedux.name}
+              value={details.name}
               shouldShowError={submitButtonClicked}
               onChange={onChangeForFieldName("name")}
             />
             <TextInputAndValidation
               labelText="Last Name: "
               fieldName={"lastName"}
-              value={detailsRedux.lastName}
+              value={details.lastName}
               onChange={onChangeForFieldName("lastName")}
               shouldShowError={submitButtonClicked}
             />
@@ -148,7 +138,7 @@ function DressMe(props) {
                 label="Phone Number: "
                 fieldName={"phone"}
                 onChange={onChangeForFieldName("phone")}
-                value={detailsRedux.phone}
+                value={details.phone}
                 minlength="10"
               />
               <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
@@ -157,7 +147,7 @@ function DressMe(props) {
               labelText=" Full Address: "
               fieldName={"address"}
               onChange={onChangeForFieldName("address")}
-              value={detailsRedux.address}
+              value={details.address}
               shouldShowError={submitButtonClicked}
             />
             <Container>
@@ -169,7 +159,7 @@ function DressMe(props) {
                 onChange={onChangeForFieldName("budget")}
                 max={10000}
                 shouldShowError={submitButtonClicked}
-                value={detailsRedux.budget}
+                value={details.budget}
               />
             </Container>
           </Column1>
@@ -186,7 +176,7 @@ function DressMe(props) {
             <SelectInput
               label="Shirt Size:"
               onChange={onChangeForFieldName("shirtSize")}
-              value={detailsRedux.shirtSize}
+              value={details.shirtSize}
               sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
             />
             <SelectInput

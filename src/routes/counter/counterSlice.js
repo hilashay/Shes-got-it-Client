@@ -25,13 +25,25 @@ import { createSlice } from "@reduxjs/toolkit";
 export const detailsSlice = createSlice({
   name: "details",
   initialState: {
-    value: " ",
+    value: {
+      name: "",
+      lastName: "",
+      phone: "",
+      address: "",
+      shirtSize: "",
+      pantsSize: "",
+      budget: "",
+    },
   },
   reducers: {
     updateDetails: (state, action) => {
-      console.log("state", state);
+      console.log("state", state.value);
       console.log("action", action);
-      state.value = action.payload;
+
+      state.value = {
+        ...state.value,
+        [action.payload.fieldName]: action.payload.value,
+      };
     },
   },
 });

@@ -5,7 +5,7 @@ const TextInput = (props) => {
   return (
     <TextInputContainer>
       <label className="label-input">{props.label}</label>
-      <input type="text" onChange={props.onChange} />
+      <input type="text" onChange={props.onChange} value={props.value} />
     </TextInputContainer>
   );
 };

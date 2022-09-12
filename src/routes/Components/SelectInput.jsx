@@ -11,7 +11,9 @@ const SelectInput = (props) => {
         justifyContent: "space-between",
       }}
     >
-      <label className="label-input">{props.label}</label>
+      <label className="label-input" for={props.fieldName}>
+        {props.fieldName}
+      </label>
       <Select onChange={props.onChange}>
         {props.sizes.map((size, index) => (
           <option key={size} value={props.sizes[index]}>

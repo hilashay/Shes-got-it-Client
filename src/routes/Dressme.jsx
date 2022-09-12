@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from "react-redux";
+import { updateDetails } from "./counter/counterSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,11 +16,14 @@ import TextInputAndValidation from "./Components/TextInputAndValidation";
 import Container from "./Components/UI/InputAndValidationContainer";
 import Success from "./success";
 // import { Counter } from "./counter/Counter";
-import { useSelector } from "react-redux";
 
 function DressMe(props) {
   const navigate = useNavigate();
-  const name = useSelector((state) => state.details.value);
+  const detailsRedux = useSelector((state) => state.details.value);
+  const dispatch = useDispatch();
+  const onChangeForFieldName = (fieldName) => (e) =>
+    dispatch(updateDetails({ value: e.target.value, fieldName }));
+  console.log("detailsRedux ", detailsRedux);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -126,42 +131,48 @@ function DressMe(props) {
         <Form onSubmit={handleSubmit}>
           <Column1>
             <TextInputAndValidation
-              labelText="name"
-              fieldName={name}
+              labelText="Name: "
+              fieldName="name"
+              value={detailsRedux.name}
               shouldShowError={submitButtonClicked}
+              onChange={onChangeForFieldName("name")}
             />
             <TextInputAndValidation
               labelText="Last Name: "
-              fieldName={details.lastName}
-              onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+              fieldName={"lastName"}
+              value={detailsRedux.lastName}
+              onChange={onChangeForFieldName("lastName")}
               shouldShowError={submitButtonClicked}
             />
-            {/* <Container>
+            <Container>
               <TextInput
                 label="Phone Number: "
-                onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+                fieldName={"phone"}
+                onChange={onChangeForFieldName("phone")}
+                value={detailsRedux.phone}
                 minlength="10"
               />
               <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
             </Container>
             <TextInputAndValidation
               labelText=" Full Address: "
-              fieldName={details.address}
-              onChange={(e) => setDetails({ ...details, address: e.target.value })}
+              fieldName={"address"}
+              onChange={onChangeForFieldName("address")}
+              value={detailsRedux.address}
               shouldShowError={submitButtonClicked}
             />
             <Container>
               <RangeInputAndValidation
-                fieldName="Budget"
+                fieldName={"Budget"}
                 step={100}
                 id="budget"
                 name="budget"
-                onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+                onChange={onChangeForFieldName("budget")}
                 max={10000}
                 shouldShowError={submitButtonClicked}
-                details={details}
+                value={detailsRedux.budget}
               />
-            </Container> */}
+            </Container>
           </Column1>
           {/* <Column2>
             <AlwaysAndNeverWearContainer>
@@ -171,19 +182,20 @@ function DressMe(props) {
               Always Wear:
               <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
             </AlwaysAndNeverWearContainer>
-          </Column2>
+          </Column2> */}
           <Column3>
             <SelectInput
               label="Shirt Size:"
-              onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
+              onChange={onChangeForFieldName("shirtSize")}
+              value={detailsRedux.shirtSize}
               sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
             />
             <SelectInput
               label="Pants Size:"
-              onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
+              onChange={onChangeForFieldName("pantsSize")}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
             />
-          </Column3> */}
+          </Column3>
           <SubmitContainer>
             <Submit>Submit</Submit>
           </SubmitContainer>

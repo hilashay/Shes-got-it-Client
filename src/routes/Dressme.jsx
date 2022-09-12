@@ -124,7 +124,6 @@ function DressMe(props) {
     />
   ) : (
     <div>
-      {/* <Counter /> */}
       <Header />
       <div className="main-container">
         <DressMeIntro />

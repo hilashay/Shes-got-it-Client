@@ -1,5 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import { updateDetails } from "./redux/detailsSlice";
+import {
+  updateDetails,
+  updateNeverWear,
+  updateNeverWearDelete,
+  updateAlwaysWear,
+  updateAlwaysWearDelete,
+} from "./redux/detailsSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,8 +20,7 @@ import SelectInput from "./Components/SelectInput";
 import TextInput from "./Components/TextInput";
 import TextInputAndValidation from "./Components/TextInputAndValidation";
 import Container from "./Components/UI/InputAndValidationContainer";
-import Success from "./success";
-// import { Counter } from "./counter/Counter";
+import Success from "./Success";
 
 function DressMe(props) {
   const navigate = useNavigate();
@@ -24,42 +29,31 @@ function DressMe(props) {
   const onChangeForFieldName = (fieldName) => (e) =>
     dispatch(updateDetails({ value: e.target.value, fieldName }));
 
+  console.log("details: ", details);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const [isError, setIsError] = useState(false);
-  const [alwaysWearSelect, setAlwaysWearSelect] = useState([]);
-  const [neverWearSelect, setNeverWearSelect] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
 
-  const neverWearChangeHandler = (e) => {
-    if (e.target.checked && !neverWearSelect.includes(e.target.value)) {
-      setNeverWearSelect((prev) => [...prev, e.target.value]);
-    } else if (!e.target.checked && neverWearSelect.includes(e.target.value)) {
-      for (let i = 0; i < neverWearSelect.length; i++) {
-        if (neverWearSelect[i] === e.target.value) {
-          setNeverWearSelect((prev) => {
-            const temp = [...prev];
-            temp.splice(i, 1);
-            return temp;
-          });
-        }
-      }
+  const neverWearChangeHandler = (fieldName) => (e) => {
+    let value = e.target.value;
+    if (e.target.checked) {
+      dispatch(updateNeverWear({ fieldName, value }));
+    } else {
+      dispatch(updateNeverWearDelete({ fieldName, value }));
     }
   };
 
-  const alwaysWearChangeHandler = (e) => {
-    if (e.target.checked && !alwaysWearSelect.includes(e.target.value)) {
-      setAlwaysWearSelect((prev) => [...prev, e.target.value]);
-    } else if (!e.target.checked && alwaysWearSelect.includes(e.target.value)) {
-      //remove e.target.value from the array
-      for (let i = 0; i < alwaysWearSelect.length; i++) {
-        if (alwaysWearSelect[i] === e.target.value) {
-          setAlwaysWearSelect((prev) => prev.filter((x) => x !== e.target.value));
-        }
-      }
+  const alwaysWearChangeHandler = (fieldName) => (e) => {
+    let value = e.target.value;
+    if (e.target.checked) {
+      dispatch(updateAlwaysWear({ fieldName, value }));
+    } else {
+      dispatch(updateAlwaysWearDelete({ fieldName, value }));
     }
   };
 
@@ -107,11 +101,7 @@ function DressMe(props) {
   return isError ? (
     <ErrorPage />
   ) : isSubmitted ? (
-    <Success
-      details={details}
-      alwaysWearSelect={alwaysWearSelect}
-      neverWearSelect={neverWearSelect}
-    />
+    <Success details={details} />
   ) : (
     <div>
       <Header />
@@ -163,15 +153,23 @@ function DressMe(props) {
               />
             </Container>
           </Column1>
-          {/* <Column2>
+          <Column2>
             <AlwaysAndNeverWearContainer>
               Never Wear:
-              <NeverWearInputContainer neverWearChangeHandler={neverWearChangeHandler} />
+              <NeverWearInputContainer
+                onChange={neverWearChangeHandler("neverWear")}
+                fieldName={"neverWear"}
+                value={details.neverWear}
+              />
               <br></br>
               Always Wear:
-              <AlwaysWearInputContainer alwaysWearChangeHandler={alwaysWearChangeHandler} />
+              <AlwaysWearInputContainer
+                onChange={alwaysWearChangeHandler("alwaysWear")}
+                fieldName={"alwaysWear"}
+                value={details.alwaysWear}
+              />
             </AlwaysAndNeverWearContainer>
-          </Column2> */}
+          </Column2>
           <Column3>
             <SelectInput
               label="Shirt Size:"

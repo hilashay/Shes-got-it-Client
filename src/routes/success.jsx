@@ -4,20 +4,19 @@ import { EntriesCopy, AlwaysAndNeverWearEntries } from "./Components/EntriesCopy
 import Header from "./Components/Header";
 import { useSelector, useDispatch } from "react-redux";
 
-const Success = (props) => {
-  const detailsRedux = useSelector((state) => state.details.value);
-  console.log("detailsRedux", detailsRedux);
+const Success = ({ details }) => {
+  const detailsSuccess = useSelector((state) => state.details.value);
+  console.log("detailsRedux", detailsSuccess);
 
   // let { id } = useParams();
   // console.log("id: ", id);
-  const { details, alwaysWearSelect, neverWearSelect } = props;
   // const details = props.details;
   // const alwaysWearSelect = props.alwaysWearSelect;
   // const neverWearSelect = props.neverWearSelect;
   // const entries = Object.entries(details);
-  const entries = Object.entries(detailsRedux);
-  const alwaysEntries = Object.entries(alwaysWearSelect);
-  const neverWearEntries = Object.entries(neverWearSelect);
+  const entries = Object.entries(details);
+  // const alwaysEntries = Object.entries(alwaysWearSelect);
+  // const neverWearEntries = Object.entries(neverWearSelect);
 
   return (
     <div>
@@ -26,10 +25,10 @@ const Success = (props) => {
         <h2>Perfect! Ive got all i need!</h2>
         <div class="success-cunteiner">
           <EntriesCopy entries={entries} />
-          Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />
+          {/* Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />
           <br />
           Always wear:
-          <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={alwaysEntries} />
+          <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={alwaysEntries} /> */}
         </div>
         <br />
       </div>

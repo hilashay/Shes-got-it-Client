@@ -2,7 +2,7 @@ import "./App.css";
 import ReviewsPage from "./routes/ReviewsPage";
 import Login from "./routes/login";
 import DressMe from "./routes/Dressme";
-import Success from "./routes/success";
+import Success from "./routes/Success";
 import Header from "./routes/Components/Header";
 import Intro from "./routes/Components/Intro";
 import DressMeButton from "./routes/Components/DressMeButton";
@@ -34,7 +34,7 @@ function App() {
         <Route path="dressme" element={<DressMe />} />
         <Route path="login" element={<Login />} />
         <Route path="reviews" element={<ReviewsPage />} />
-        <Route path="dressme/success/:id" element={<Success />} />
+        <Route path="dressme/Success/:id" element={<Success />} />
       </Routes>
     </div>
   );

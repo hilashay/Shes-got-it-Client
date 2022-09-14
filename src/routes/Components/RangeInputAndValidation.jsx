@@ -12,7 +12,7 @@ const RangeInputAndValidation = ({
   max,
   fieldName,
   shouldShowError,
-  details,
+  value,
 }) => {
   return (
     <Container>
@@ -21,7 +21,7 @@ const RangeInputAndValidation = ({
       </label>
       <RangeContainer>
         <input type="range" step={step} id={id} name={name} onChange={onChange} min={0} max={max} />
-        <DisplayRange>{details.budget}</DisplayRange>
+        <DisplayRange>{value}</DisplayRange>
       </RangeContainer>
       {shouldShowError ? <ErrorValidation field={fieldName} /> : <Required>*Required</Required>}
     </Container>
